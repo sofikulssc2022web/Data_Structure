@@ -1,0 +1,10 @@
+void delete_at_any_pos(Node* &head, int idx) {
+    Node* tmp = head;
+    for(int i=1; i<idx; i++) {
+        tmp = tmp->next;
+    }
+
+    Node* deleteNode = tmp->next;
+    tmp->next = tmp->next->next;
+    delete deleteNode;
+}
