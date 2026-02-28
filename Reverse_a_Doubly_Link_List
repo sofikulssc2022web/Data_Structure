@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node
+{
+public:
+  int val;
+  Node *next;
+  Node *prev;
+  Node(int val)
+  {
+    this->val = val;
+    this->next = NULL;
+    this->prev = NULL;
+  }
+};
+void print_normal(Node *head)
+{
+  Node *tmp = head;
+  while (tmp != NULL)
+  {
+    cout << tmp->val << " ";
+    tmp = tmp->next;
+  }
+  cout << endl;
+}
+void reverse(Node *head, Node *tail)
+{
+  Node *i = head; // i পয়েন্টারকে head এ পয়েন্ট করালাম
+  Node *j = tail; // j পয়েন্টারকে tail এ পয়েন্ট করালাম
+  while (i != j && i->next != j) // যতক্ষন পর্যন্ত condition True হচ্ছে ততক্ষন লুপ চালাবো
+  {
+    swap(i->val, j->val); // কারেন্ট i এবং j যে Node এ পয়েন্ট করা আছে ঐ Node গুলার ভ্যালু swap করলাম 
+    i = i->next; // i কে একঘর ডানে মুভ করলাম 
+    j = j->prev; // j কে একঘর বামে মুভ করলাম 
+  }
+  swap(i->val, j->val); // Node সংখ্যা জোড় হলে যেহেতু i->next = j কন্ডিশনে loop ব্রেক হবে তখন উপরের লুপে মাঝামাঝি দুটি Node এর ভ্যালু swap হবে না। এইক্ষেত্রে আমরা manually কাজটি করে নিলাম।  
+}
+int main()
+{
+  Node *head = new Node(10);
+  Node *a = new Node(20);
+  Node *b = new Node (30) ;
+  Node *c = new Node(40) ; 
+  Node *tail = c ;
+
+  // connection
+   head->next = a;
+   a->prev = head;
+   a->next = b;
+   b->prev = a;
+   b->next = c;
+   c->prev = b;
+
+  reverse(head, tail);
+  print_normal(head); // 40 30 20 10 
+
+  return 0;
+}
