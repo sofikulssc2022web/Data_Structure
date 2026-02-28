@@ -1,0 +1,27 @@
+int main()
+{
+    Node *head = NULL; //head initialize করা হচ্ছে।
+    Node *tail = NULL; //tail initialize করা হচ্ছে।
+    int val;
+    while (true) // একটা infinity while loop চালানো হচ্ছে।
+    {
+        cin >> val; // একটা value input নেয়া হচ্ছে।
+        if (val == -1){  //check করা হচ্ছে value টা -1 কিনা।
+            break; // value -1 হলে loop break করা হচ্ছে।
+	}
+        insert_tail(head, tail, val); //যেহেতু আমরা generally একটার পর একটা value insert করি তাই insert_tail function call করা হচ্ছে।
+    }
+    print_normal(head); // এখানে right to left print করা হচ্ছে
+    print_reverse(tail);  // এখানে left to right print করা হচ্ছে।
+    return 0;
+}
+Example:
+
+
+Sample input:
+10 20 30 40 50 -1
+
+
+Sample output:
+10 20 30 40 50
+50 40 30 20 10
