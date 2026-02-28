@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node
+{
+public:
+  int val;
+  Node *next;
+  Node(int val)
+  {
+    this->val = val;
+    this->next = NULL;
+  }
+};
+int main()
+{
+  Node *head = new Node(10);
+  Node *a = new Node(20);
+  Node *b = new Node(30);
+
+  head->next = a;
+  a->next = b;
+
+  Node *slow = head; // slow পয়েন্টার টি head এ পয়েন্ট করেছি 
+  Node *fast = head; // fast পয়েন্টার টি head এ পয়েন্ট করেছি 
+  bool flag = false; // Cycle পেয়েছি কিনা চেক করার জন্য flag রাখছি 
+  while (fast != NULL && fast->next != NULL) // fast এবং fast->next যতক্ষন না হচ্ছে ততক্ষন লুপ চালাচ্ছি
+  {
+    slow = slow->next; // slow পয়েন্টার কে এক ঘর সামনে নিয়ে যাচ্ছি
+    fast = fast->next->next; // fast পয়েন্টার কে দুই ঘর সামনে নিয়ে যাচ্ছি 
+    if (fast == slow) // যদি কোনো Moment এ fast এবং slow পয়েন্টার same node এ পয়েন্ট করা থাকে 
+    {
+      flag = true; // তবে Cycle Detect হয়েছে এবং flag এর মান True করে দিলাম 
+      break;
+    }
+  }
+  if (flag == true) // flag এর মান true হলে Cycle পাওয়া গেছে 
+    cout << "Cycle Detected" << endl;
+  else
+    cout << "No Cycle" << endl; // else কোনো cycle নেই
+  return 0;
+}
