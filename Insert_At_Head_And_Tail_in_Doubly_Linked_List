@@ -1,0 +1,32 @@
+// এই function এর মাধ্যমে আমরা head এ new value insert করবো। parameter এ head এবং tail এবং new value নেয়া হচ্ছে।
+void insert_head(Node *&head, Node *&tail, int val)
+{
+    Node *newNode = new Node(val); // new value দিয়ে new node create করা হচ্ছে।
+    if (head == NULL) // যদি head = NULL হয় তাহলে বুঝাচ্ছে list এখন empty
+    {
+        head = newNode; // তাই head এ ও new node রাখা হচ্ছে।
+        tail = newNode; // tail এ ও new node রাখা হচ্ছে।
+        return; // return করে function close করা হচ্ছে।
+    }
+    newNode->next = head; // এখানে যদি head এ আগে থেকে value থাকে তাহলে new node এর next এ head রাখা হচ্ছে। 
+    head->prev = newNode; // এখানে head এর previous এ new node রাখা হচ্ছে।
+    head = newNode; // finally head এ new node assign করা হচ্ছে। 
+}
+
+
+// এই function এর মাধ্যমে আমরা tail এ new value insert করবো। parameter এ head এবং tail এবং new value নেয়া হচ্ছে।
+void insert_tail(Node *&head, Node *&tail, int val)
+{
+    Node *newNode = new Node(val);
+    if (tail == NULL) // List empty হলে তখন এই condition টা কাজ করবে।
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    tail->next = newNode;   //এখানে যদি tail এ আগে থেকে value থাকে তাহলে new node এর next এ tail রাখা হচ্ছে। 
+
+
+    newNode->prev = tail; // এখানে new node এর previous এ tail রাখা হচ্ছে।
+    tail = tail->next; //এখানে tail এ new value tail->next বা new node রাখা হচ্ছে।
+}
